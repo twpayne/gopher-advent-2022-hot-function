@@ -6,8 +6,9 @@ type IPSet map[uint32]struct{}
 
 // netIPToUint32 converts an net.IP (which is assumed to be an IPv4 address) to
 // a uint32.
-func netIPToUint32(netIP net.IP) uint32 {
-	return uint32(netIP[0])<<24 + uint32(netIP[1])<<16 + uint32(netIP[2])<<8 + uint32(netIP[3])
+func netIPToUint32(ip net.IP) uint32 {
+	ipv4 := ip.To4()
+	return uint32(ipv4[0])<<24 + uint32(ipv4[1])<<16 + uint32(ipv4[2])<<8 + uint32(ipv4[3])
 }
 
 // newIPSet returns a new set of IPs.

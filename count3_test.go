@@ -11,7 +11,7 @@ var (
 )
 
 func BenchmarkCountBadIPs3(b *testing.B) {
-	badIPs, flows, _ := getFlowsAndBadIPs(benchNumFlows, benchNumBadIPs, benchHitRate)
+	badIPs, flows, _ := getBadIPsAndFlows()
 	badIPSet, packedFlows := getPackedFlows(badIPs, flows)
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
