@@ -19,7 +19,7 @@ var (
 )
 
 func BenchmarkCountBadIPs1(b *testing.B) {
-	badIPs, flows, _ := getFlowsAndBadIPs(benchNumFlows, benchNumBadIPs, benchHitRate)
+	badIPs, flows, _ := getBadIPsAndFlows()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		result = CountBadIPs1(badIPs, flows)
@@ -27,7 +27,7 @@ func BenchmarkCountBadIPs1(b *testing.B) {
 	b.StopTimer()
 }
 
-func getFlowsAndBadIPs(numBadIPs, numFlows int, hitRate float64) ([]net.IP, []*Flow, int) {
+func getBadIPsAndFlows() ([]net.IP, []*Flow, int) {
 	if benchBadIPs == nil {
 		benchBadIPs, benchFlows, benchHits = generateRandomBadIPsAndFlows(benchNumBadIPs, benchNumFlows, benchHitRate)
 	}
